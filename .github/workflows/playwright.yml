@@ -1,0 +1,79 @@
+name: Playwright Tests
+on:
+  workflow_dispatch:
+    inputs:
+      ENV:
+        description: 'Environment'
+        required: true
+        default: 'stage'
+        type: choice
+        options:
+          - qa
+          - dev
+          - stage
+      TEST_NAME:
+        description: 'Test name'
+        required: true
+        default: 'historyPage'
+        type: choice
+        options:
+          - historyPage
+          - kycFlow
+          - purchasePage
+jobs:
+  test:
+    name: Test (${{ matrix.shard }}/${{ strategy.job-total }})
+    strategy:
+      matrix:
+        shard: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+    timeout-minutes: 60
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install chromium
+      - name: Run Playwright tests
+        run: npx --ENV=${{ inputs.ENV }} playwright test ${{ inputs.TEST_NAME }}.test.ts --project=user-* --shard=${{ matrix.shard }}/${{ strategy.job-total }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: blob-report-${{ matrix.shard }}
+          path: blob-report
+          retention-days: 1
+
+  create-report:
+    name: Create test report
+    if: always()
+    needs: [ test ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download blob reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+      - run: ls -R all-blob-reports
+
+      - name: Merge into HTML Report
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: blob-all-${{ github.run_attempt }}
+          path: playwright-report
+          retention-days: 7
