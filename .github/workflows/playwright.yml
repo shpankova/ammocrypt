@@ -3,18 +3,18 @@ on:
   workflow_dispatch:
     inputs:
       ENV:
-        description: 'Environment'
+        description: "Environment"
         required: true
-        default: 'stage'
+        default: "stage"
         type: choice
         options:
           - qa
           - dev
           - stage
       TEST_NAME:
-        description: 'Test name'
+        description: "Test name"
         required: true
-        default: 'historyPage'
+        default: "historyPage"
         type: choice
         options:
           - historyPage
@@ -25,7 +25,29 @@ jobs:
     name: Test (${{ matrix.shard }}/${{ strategy.job-total }})
     strategy:
       matrix:
-        shard: [ 1, 2, 3, 4, 5, 6 ]
+        shard:
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+          ]
     timeout-minutes: 60
     runs-on: windows-latest
     steps:
@@ -49,7 +71,7 @@ jobs:
   create-report:
     name: Create test report
     if: always()
-    needs: [ test ]
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

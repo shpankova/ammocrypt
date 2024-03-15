@@ -85,62 +85,62 @@ export default defineConfig<TestOptions>({
       name: 'user-06',
       use: { profile: 'profile-06' },
     },
-    // {
-    //   name: 'user-07',
-    //   use: { profile: 'profile-07' },
-    // },
-    // {
-    //   name: 'user-08',
-    //   use: { profile: 'profile-08' },
-    // },
-    // {
-    //   name: 'user-09',
-    //   use: { profile: 'profile-09' },
-    // },
-    // {
-    //   name: 'user-10',
-    //   use: { profile: 'profile-10' },
-    // },
-    // {
-    //   name: 'user-11',
-    //   use: { profile: 'profile-11' },
-    // },
-    // {
-    //   name: 'user-12',
-    //   use: { profile: 'profile-12' },
-    // },
-    // {
-    //   name: 'user-13',
-    //   use: { profile: 'profile-13' },
-    // },
-    // {
-    //   name: 'user-14',
-    //   use: { profile: 'profile-14' },
-    // },
-    // {
-    //   name: 'user-15',
-    //   use: { profile: 'profile-15' },
-    // },
-    // {
-    //   name: 'user-16',
-    //   use: { profile: 'profile-16' },
-    // },
-    // {
-    //   name: 'user-17',
-    //   use: { profile: 'profile-17' },
-    // },
-    // {
-    //   name: 'user-18',
-    //   use: { profile: 'profile-18' },
-    // },
-    // {
-    //   name: 'user-19',
-    //   use: { profile: 'profile-19' },
-    // },
-    // {
-    //   name: 'user-20',
-    //   use: { profile: 'profile-20' },
-    // },
+    {
+      name: 'user-07',
+      use: { profile: 'profile-07' },
+    },
+    {
+      name: 'user-08',
+      use: { profile: 'profile-08' },
+    },
+    {
+      name: 'user-09',
+      use: { profile: 'profile-09' },
+    },
+    {
+      name: 'user-10',
+      use: { profile: 'profile-10' },
+    },
+    {
+      name: 'user-11',
+      use: { profile: 'profile-11' },
+    },
+    {
+      name: 'user-12',
+      use: { profile: 'profile-12' },
+    },
+    {
+      name: 'user-13',
+      use: { profile: 'profile-13' },
+    },
+    {
+      name: 'user-14',
+      use: { profile: 'profile-14' },
+    },
+    {
+      name: 'user-15',
+      use: { profile: 'profile-15' },
+    },
+    {
+      name: 'user-16',
+      use: { profile: 'profile-16' },
+    },
+    {
+      name: 'user-17',
+      use: { profile: 'profile-17' },
+    },
+    {
+      name: 'user-18',
+      use: { profile: 'profile-18' },
+    },
+    {
+      name: 'user-19',
+      use: { profile: 'profile-19' },
+    },
+    {
+      name: 'user-20',
+      use: { profile: 'profile-20' },
+    },
   ],
 
 });
