@@ -22,7 +22,7 @@ test ('Purchase transaction flow', async ( {purchasePage, context} )=> {
   await purchasePage.AUTHORISE_BUTTON.click();
 
   let newPage = await context.waitForEvent('page');
-  console.log(await newPage.title() + 'Approve');
+  console.log(await newPage.title() + ' - Approve');
 
   const metaMaskSpendingCapPage = new MetaMaskSpendingCapPage(newPage);
   await metaMaskSpendingCapPage.NEXT_BUTTON.click();
@@ -30,7 +30,7 @@ test ('Purchase transaction flow', async ( {purchasePage, context} )=> {
   expect(metaMaskSpendingCapPage.page().isClosed());
 
   newPage = await context.waitForEvent('page', {timeout: 60000});
-  console.log(await newPage.title() + 'Confirm');
+  console.log(await newPage.title() + ' - Confirm');
   //comment line below in production mode
   // await purchasePage.page().pause();
 

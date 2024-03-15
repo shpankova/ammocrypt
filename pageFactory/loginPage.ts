@@ -39,7 +39,8 @@ export class LoginPage extends BasePage {
     // await page.pause();
 
     newPage = await context.waitForEvent('page');
-    console.log(await newPage.title());
+    const walletAddress = await newPage.locator('div.request-signature__row-value').innerText();
+    console.log(await newPage.title() + ' - ' + walletAddress.match(/address:\s(.*)/)[1]);
     await newPage.getByRole('button', { name: 'Sign' }).click();
     await expect(this.page()).toHaveURL(/.*balance/, {timeout: 5000});
     //comment line below in production mode
